@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -13,6 +12,11 @@ namespace DefaultNamespace
             Destroy(gameObject, timeToDestroy);
         }
 
+        private void Move()
+        {
+            transform.position += movementSpeed * transform.forward;
+        }
+
         private void Update()
         {
             timeToDestroy -= Time.deltaTime;
@@ -21,11 +25,6 @@ namespace DefaultNamespace
                 Destroy(gameObject);
             }
             Move();
-        }
-
-        private void Move()
-        {
-            transform.position += movementSpeed * transform.forward;
         }
     }
 }
