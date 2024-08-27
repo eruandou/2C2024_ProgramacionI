@@ -4,7 +4,7 @@ namespace DefaultNamespace
 {
     public class Bullet : MonoBehaviour
     {
-        [SerializeField] private float movementSpeed;
+        [SerializeField] private float speed;
         [SerializeField] private float timeToDestroy;
 
         private void Awake()
@@ -14,7 +14,7 @@ namespace DefaultNamespace
 
         private void Move()
         {
-            transform.position += movementSpeed * transform.forward;
+            transform.position += speed * transform.forward;
         }
 
         private void Update()
