@@ -18,7 +18,6 @@ namespace DefaultNamespace
             timeToDestroy -= Time.deltaTime;
             if (timeToDestroy <= 0)
             {
-                //Destruyo la bala
                 Destroy(gameObject);
             }
             Move();
