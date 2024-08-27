@@ -20,7 +20,7 @@ public class MyFirstScript : MonoBehaviour
     [SerializeField] private float scalingVelocity;
     [SerializeField] private Vector3 rotationDir;
     [SerializeField] private float rotationSpeed;
-    [SerializeField] private GameObject house; 
+    [SerializeField] private GameObject house;
 
     [SerializeField] private Bullet bulletPrefab;
 
@@ -127,6 +127,7 @@ public class MyFirstScript : MonoBehaviour
         {
             Debug.Log("It's alive");
         }
+
         else if (speed > 0)
         {
             speed = 0;
@@ -145,25 +146,10 @@ public class MyFirstScript : MonoBehaviour
         {
             Debug.Log("It's dead");
         }
-
-
-        // if (!isAlive)
-        // {
-        // Debug.Log("It's dead");
-        // }
     }
 
     private void Move()
     {
-        // //Agarrar la posicion actual del personaje
-        // Vector3 position = transform.position;
-        // //Sumarle una cantidad de movimiento
-        // position = position + movementDirection * speed;
-        // //Escribir de vuelta la posicion
-        // transform.position = position;
-
-        // transform.position += movementDirection * speed;
-
         //Si esta vivo Y la velocidad es mayor a 0, entonces se mueve
 
         if (isAlive && speed > 0)
