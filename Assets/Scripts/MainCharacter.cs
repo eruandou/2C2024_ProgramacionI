@@ -9,12 +9,18 @@ namespace DefaultNamespace
         [SerializeField] private float movementSpeed;
         [SerializeField] private Bullet bullet;
         [SerializeField] private float shootingCooldownBase;
+        [SerializeField] private PermanentBullet permanentBullet;
+
+        [SerializeField] private float maxHealth;
+
+        private float health;
 
         private float shootingCooldown;
 
         private void Awake()
         {
             shootingCooldown = shootingCooldownBase;
+            health = maxHealth;
         }
 
         private void Update()
@@ -54,6 +60,11 @@ namespace DefaultNamespace
                 Shoot();
             }
 
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Instantiate(permanentBullet, transform.position, transform.rotation);
+            }
+
             movementDir = movementDir.normalized;
             Move(movementDir);
         }
@@ -75,6 +86,11 @@ namespace DefaultNamespace
             Vector3 direction = right + forward;
 
             transform.position += direction * movementSpeed * Time.deltaTime;
+        }
+
+        public void Heal(float healAmount)
+        {
+            health += healAmount;
         }
     }
 }
