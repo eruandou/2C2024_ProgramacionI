@@ -101,6 +101,10 @@ MonoBehaviour:
   movementSpeed: 1
   bullet: {fileID: 3493647023978033563, guid: a87257a25f448a342846bb0aab4af556, type: 3}
   shootingCooldownBase: 0
+  permanentBullet: {fileID: 0}
+  maxHealth: 0
+  rb: {fileID: 480159509278052756}
+  jumpForce: 100
 --- !u!136 &6690292952566212064
 CapsuleCollider:
   m_ObjectHideFlags: 0

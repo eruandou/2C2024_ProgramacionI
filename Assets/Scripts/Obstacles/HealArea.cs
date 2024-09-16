@@ -6,7 +6,7 @@ namespace DefaultNamespace.Obstacles
     public class HealArea : MonoBehaviour
     {
         [SerializeField] private float healAmount;
-
+        
         private void OnTriggerStay(Collider other)
         {
             Heal(other.gameObject);

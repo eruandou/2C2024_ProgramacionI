@@ -10,8 +10,12 @@ namespace DefaultNamespace
         [SerializeField] private Bullet bullet;
         [SerializeField] private float shootingCooldownBase;
         [SerializeField] private PermanentBullet permanentBullet;
-
         [SerializeField] private float maxHealth;
+        [SerializeField] private Rigidbody rb;
+        [SerializeField] private float jumpForce;
+        [SerializeField] private Transform raycastOrigin;
+        [SerializeField] private float jumpCheckDistance;
+        [SerializeField] private LayerMask groundLayer;
 
         private float health;
 
@@ -60,13 +64,32 @@ namespace DefaultNamespace
                 Shoot();
             }
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            // if (Input.GetKeyDown(KeyCode.Space))
+            // {
+            // Instantiate(permanentBullet, transform.position, transform.rotation);
+            // }
+
+            if (Input.GetButtonDown("Jump"))
             {
-                Instantiate(permanentBullet, transform.position, transform.rotation);
+                Jump();
             }
 
             movementDir = movementDir.normalized;
             Move(movementDir);
+        }
+
+        private void Jump()
+        {
+            //No puede saltar si el piso esta muy lejos
+
+            bool hitGround =
+                UnityEngine.Physics.Raycast(raycastOrigin.position, Vector3.down, jumpCheckDistance, groundLayer);
+
+            if (!hitGround)
+            {
+                Vector3 direction = Vector3.up; //Lo mismo que escribir new Vector3(0,1,0)
+                rb.AddForce(direction * jumpForce, ForceMode.Impulse);
+            }
         }
 
         private void Shoot()
@@ -91,6 +114,12 @@ namespace DefaultNamespace
         public void Heal(float healAmount)
         {
             health += healAmount;
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawLine(raycastOrigin.position, raycastOrigin.position + Vector3.down * jumpCheckDistance);
         }
     }
 }
