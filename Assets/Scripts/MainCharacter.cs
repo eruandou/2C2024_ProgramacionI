@@ -17,6 +17,9 @@ namespace DefaultNamespace
         [SerializeField] private float jumpCheckDistance;
         [SerializeField] private LayerMask groundLayer;
 
+        [SerializeField] private Vector3 startingRotation;
+
+        private EnemyBehaviour targetEnemy;
         private float health;
 
         private float shootingCooldown;
@@ -95,7 +98,12 @@ namespace DefaultNamespace
         private void Shoot()
         {
             //Disparo 
-            Instantiate(bullet, transform.position, transform.rotation);
+            Bullet instantiatedBullet = Instantiate(bullet, transform.position, transform.rotation);
+            if (targetEnemy != null)
+            {
+                Vector3 direction = (targetEnemy.transform.position - transform.position).normalized;
+                instantiatedBullet.transform.forward = direction;
+            }
         }
 
         private void Move(Vector2 movementDir)

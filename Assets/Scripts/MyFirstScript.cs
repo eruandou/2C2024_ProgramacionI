@@ -40,7 +40,7 @@ public class MyFirstScript : MonoBehaviour
     {
         Move();
         CheckDead();
-        Debug.Log("Update");
+        // Debug.Log("Update");
         UpdateHouse();
     }
 
@@ -125,7 +125,7 @@ public class MyFirstScript : MonoBehaviour
 
         if (isAlive)
         {
-            Debug.Log("It's alive");
+            // Debug.Log("It's alive");
         }
 
         else if (speed > 0)
@@ -134,7 +134,7 @@ public class MyFirstScript : MonoBehaviour
         }
         else
         {
-            Debug.Log("It's dead");
+            // Debug.Log("It's dead");
         }
 
         if (!isAlive && speed > 0)
@@ -144,7 +144,7 @@ public class MyFirstScript : MonoBehaviour
 
         else
         {
-            Debug.Log("It's dead");
+            // Debug.Log("It's dead");
         }
     }
 
