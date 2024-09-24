@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
 namespace DefaultNamespace
 {
@@ -18,6 +16,9 @@ namespace DefaultNamespace
         [SerializeField] private LayerMask groundLayer;
 
         [SerializeField] private Vector3 startingRotation;
+
+        [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioClip shootingSound;
 
         private EnemyBehaviour targetEnemy;
         private float health;
@@ -92,6 +93,7 @@ namespace DefaultNamespace
             {
                 Vector3 direction = Vector3.up; //Lo mismo que escribir new Vector3(0,1,0)
                 rb.AddForce(direction * jumpForce, ForceMode.Impulse);
+                PlayJumpSound();
             }
         }
 
@@ -104,6 +106,8 @@ namespace DefaultNamespace
                 Vector3 direction = (targetEnemy.transform.position - transform.position).normalized;
                 instantiatedBullet.transform.forward = direction;
             }
+
+            PlayShootSound();
         }
 
         private void Move(Vector2 movementDir)
@@ -128,6 +132,15 @@ namespace DefaultNamespace
         {
             Gizmos.color = Color.blue;
             Gizmos.DrawLine(raycastOrigin.position, raycastOrigin.position + Vector3.down * jumpCheckDistance);
+        }
+
+        private void PlayJumpSound()
+        {
+        }
+
+        private void PlayShootSound()
+        {
+            audioSource.PlayOneShot(shootingSound);
         }
     }
 }
